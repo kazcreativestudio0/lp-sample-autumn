@@ -30,6 +30,27 @@ npm run preview
 
 ## Cloudflare Pages でデプロイ
 
+### この環境で実施済みのこと
+
+- **Wrangler CLI**（`4.83.x`）を **`~/.local/bin`** にインストールしました（管理者権限なし）。グローバルコマンドは `wrangler`。
+- **`~/.zshrc`** に `export PATH="$HOME/.local/bin:$PATH"` を追記しました。**新しいターミナルを開く**か、いまのシェルで `source ~/.zshrc` すると `wrangler --version` が使えます。
+- 認証まわりは Cloudflare の OAuth のため **この環境からは完了できません**。次だけ **ご自身のターミナル**で実行してください（ブラウザが開きます）。
+
+  ```bash
+  cd "/Users/kawashimakazuma/Desktop/KAZ creative tudio hub/02_プロジェクト/ポートフォリオ作成/LPサンプル_サービス紹介"
+  ./scripts/wrangler-login.sh
+  ```
+
+  ログインできたらデプロイ:
+
+  ```bash
+  ./scripts/deploy-pages.sh
+  # または
+  npm run deploy:pages
+  ```
+
+  初回は Cloudflare 上に **`lp-sample-autumn`** という Pages プロジェクトが無ければ、ダッシュボードで作成するか、`wrangler pages project create lp-sample-autumn` を実行してください。
+
 ### A. ダッシュボードから Git 連携（おすすめ）
 
 1. [Cloudflare Dashboard](https://dash.cloudflare.com/) → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**。
@@ -48,21 +69,16 @@ Node バージョンは **20** を使うよう、プロジェクトの **Setting
 
 ### B. Wrangler CLI から手動デプロイ
 
-1. `npm install` 済みであること。
-2. [API トークン](https://dash.cloudflare.com/profile/api-tokens) を作成（**Account** → **Cloudflare Pages** → **Edit** など）。
-3. ログイン（初回のみ）:
+1. `npm install` 済みであること（またはリポジトリルートで `npm ci`）。
+2. ブラウザログイン（推奨）: `wrangler login` または `./scripts/wrangler-login.sh`。
+3. **API トークン**で非対話デプロイする場合: [API トークン](https://dash.cloudflare.com/profile/api-tokens) を作成し、実行時だけ環境変数に渡します。
 
    ```bash
-   npx wrangler login
-   ```
-
-4. ビルドしてアップロード:
-
-   ```bash
+   export CLOUDFLARE_API_TOKEN="（シークレット）"
    npm run deploy:pages
    ```
 
-   プロジェクト名を変える場合は `package.json` の `deploy:pages` スクリプト内の `--project-name` と `wrangler.toml` の `name` を揃えてください。
+4. プロジェクト名を変える場合は `package.json` の `deploy:pages` と `wrangler.toml` の `name` を揃えてください。
 
 ### C. GitHub Actions（このリポジトリの workflow）
 
