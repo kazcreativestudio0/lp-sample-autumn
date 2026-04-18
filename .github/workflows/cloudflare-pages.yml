@@ -1,10 +1,13 @@
-# Cloudflare Pages — GitHub に接続済みリポジトリ向け
-# リポジトリの Secrets に次を設定してください:
-#   CLOUDFLARE_API_TOKEN  … Workers / Pages 編集権限（推奨: Account API Token）
-#   CLOUDFLARE_ACCOUNT_ID … Cloudflare ダッシュボード右サイドバーに表示
+# Cloudflare Pages — main への git push でデプロイ（オプション）
 #
-# 初回のみ Cloudflare でプロジェクト名 lp-sample-autumn を作成するか、
-# 下の projectName を既存名に合わせて変更してください。
+# Cloudflare ダッシュボードで「Git を直接接続」している場合は、この workflow は
+# 二重デプロイになるため無効化してください（ファイル名を .disabled などに変更）。
+#
+# 使う場合: GitHub → Settings → Secrets → Actions に以下を追加
+#   CLOUDFLARE_API_TOKEN  … Account API Token（Pages 編集可）
+#   CLOUDFLARE_ACCOUNT_ID … ダッシュボードの Account ID
+#
+# プロジェクト名は Cloudflare 側の Pages 名と一致させる（既定: lp-sample-autumn）
 
 name: Deploy to Cloudflare Pages
 
