@@ -1,0 +1,46 @@
+# Cloudflare Pages — GitHub に接続済みリポジトリ向け
+# リポジトリの Secrets に次を設定してください:
+#   CLOUDFLARE_API_TOKEN  … Workers / Pages 編集権限（推奨: Account API Token）
+#   CLOUDFLARE_ACCOUNT_ID … Cloudflare ダッシュボード右サイドバーに表示
+#
+# 初回のみ Cloudflare でプロジェクト名 lp-sample-autumn を作成するか、
+# 下の projectName を既存名に合わせて変更してください。
+
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: lp-sample-autumn
+          directory: dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,6 @@
+# Cloudflare Pages（静的サイト）
+# Git 連携時はダッシュボードの「ビルド設定」と揃えてください。
+# wrangler pages deploy でも project 名として参照されます。
+name = "lp-sample-autumn"
+compatibility_date = "2026-04-19"
+pages_build_output_dir = "./dist"
