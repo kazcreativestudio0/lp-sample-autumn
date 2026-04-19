@@ -72,6 +72,7 @@ export default function App() {
           style={{ backgroundImage: `url(${IMG_HOME})` }}
         >
           <div className="lp-scene__overlay" aria-hidden="true" />
+          <div className="lp-scene__wash lp-scene__wash--home" aria-hidden="true" />
           <div className="lp-scene__leaves" aria-hidden="true" />
           <div className="lp-scene__social" aria-label="シェア（デモ・リンクなし）">
             <a href="#top" className="lp-scene__icon" aria-label="X（デモ）">
@@ -114,6 +115,7 @@ export default function App() {
           style={{ backgroundImage: `url(${IMG_PARK})` }}
         >
           <div className="lp-scene__overlay lp-scene__overlay--park" aria-hidden="true" />
+          <div className="lp-scene__wash lp-scene__wash--park" aria-hidden="true" />
           <div className="lp-scene__leaves lp-scene__leaves--flip" aria-hidden="true" />
 
           <div className="lp-inner lp-scene__grid lp-scene__grid--park">
