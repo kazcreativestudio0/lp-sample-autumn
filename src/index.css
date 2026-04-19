@@ -26,6 +26,8 @@
   --lp-serif: 'Noto Serif JP', ui-serif, serif;
   --lp-sans: 'Noto Sans JP', system-ui, sans-serif;
   --lp-max: 980px;
+  /* モバイルファースト：狭い画面の余白（広いほど緩める） */
+  --lp-gutter: 1.125rem;
   --lp-radius: 14px;
   --lp-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --lp-shadow-soft: 0 22px 52px rgb(30 22 18 / 0.1);
@@ -40,13 +42,21 @@
 
 html {
   scroll-behavior: smooth;
+  /* 1rem ≈ 18px — モバイルで読みやすいベース */
+  font-size: 112.5%;
+}
+
+@media (min-width: 1024px) {
+  html {
+    font-size: 106.25%;
+  }
 }
 
 body {
   margin: 0;
   font-family: var(--lp-sans);
-  font-size: 16px;
-  line-height: 1.85;
+  font-size: 1rem;
+  line-height: 1.78;
   color: var(--lp-ink);
   background:
     radial-gradient(ellipse 90% 55% at 88% 5%, rgb(167 139 250 / 0.2), transparent 52%),
@@ -97,12 +107,24 @@ strong {
 }
 
 .lp-inner {
-  width: min(100% - 2.5rem, var(--lp-max));
+  width: min(100% - 2 * var(--lp-gutter), var(--lp-max));
   margin-inline: auto;
 }
 
+@media (min-width: 640px) {
+  :root {
+    --lp-gutter: 1.35rem;
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --lp-gutter: 1.5rem;
+  }
+}
+
 .lp-narrow {
-  width: min(100% - 2.5rem, 640px);
+  width: min(100% - 2 * var(--lp-gutter), 640px);
   margin-inline: auto;
 }
 
@@ -148,8 +170,8 @@ strong {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 0.75rem 0;
+  gap: 0.65rem;
+  padding: 0.85rem 0;
 }
 
 .lp-mark {
@@ -161,14 +183,20 @@ strong {
 }
 
 .lp-mark__line1 {
-  font-size: 0.68rem;
+  font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.35em;
   color: rgb(255 248 242 / 0.55);
 }
 
+@media (min-width: 768px) {
+  .lp-mark__line1 {
+    font-size: 0.72rem;
+  }
+}
+
 .lp-mark__line2 {
-  font-size: 1.35rem;
+  font-size: clamp(1.55rem, 5vw, 1.85rem);
   font-weight: 700;
   font-family: var(--lp-script), ui-sans-serif, system-ui, sans-serif;
   letter-spacing: 0.02em;
@@ -186,22 +214,49 @@ strong {
   }
 }
 
+/* モバイル：横スクロールで常にナビを出す（タップ領域確保） */
 .lp-topnav {
-  display: none;
-  gap: 1.25rem;
-  font-size: 0.82rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.05rem;
   font-weight: 600;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: min(72vw, 18rem);
+  padding: 0.2rem 0;
+  margin-left: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  mask-image: linear-gradient(90deg, #000 92%, transparent 100%);
+}
+
+.lp-topnav::-webkit-scrollbar {
+  height: 4px;
 }
 
 @media (min-width: 780px) {
   .lp-topnav {
-    display: flex;
+    max-width: none;
+    overflow: visible;
+    mask-image: none;
+    gap: 1.15rem;
+    font-size: 1rem;
+    padding: 0;
   }
 }
 
 .lp-topnav a {
+  flex-shrink: 0;
+  padding: 0.45rem 0.15rem;
   color: rgb(255 248 242 / 0.72);
   text-decoration: none;
+}
+
+@media (min-width: 780px) {
+  .lp-topnav a {
+    padding: 0.35rem 0;
+  }
 }
 
 .lp-topnav a:hover {
@@ -231,14 +286,20 @@ strong {
   color: rgb(198 210 255);
 }
 
-/* —— Autumn full-bleed scenes —— */
+/* —— Autumn full-bleed scenes（モバイル優先の余白・高さ） —— */
 .lp-scene {
   position: relative;
-  min-height: min(820px, calc(100dvh - 52px));
+  min-height: min(92dvh, 52rem);
   background-color: #1a120e;
   background-size: cover;
   background-position: center;
-  padding: clamp(4.5rem, 12vw, 7rem) 0 clamp(3rem, 9vw, 5.5rem);
+  padding: clamp(5rem, 14vw, 7rem) 0 clamp(3.25rem, 10vw, 5.5rem);
+}
+
+@media (min-width: 800px) {
+  .lp-scene {
+    min-height: min(820px, calc(100dvh - 52px));
+  }
 }
 
 .lp-scene__overlay {
@@ -389,12 +450,12 @@ strong {
 }
 
 .lp-scene__script--lg {
-  font-size: clamp(2.65rem, 8.5vw, 4.25rem);
+  font-size: clamp(2.85rem, 11vw, 4.6rem);
   letter-spacing: 0.01em;
 }
 
 .lp-scene__script--aside {
-  font-size: clamp(2.4rem, 7vw, 3.75rem);
+  font-size: clamp(2.55rem, 9vw, 3.85rem);
 }
 
 @media (min-width: 800px) {
@@ -415,24 +476,24 @@ strong {
 }
 
 .lp-scene__tag {
-  margin: 0 0 0.75rem;
-  font-size: 0.82rem;
+  margin: 0 0 0.85rem;
+  font-size: 1.05rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   color: rgb(255 255 255 / 0.92);
 }
 
 .lp-scene__text {
-  margin: 0 0 1rem;
-  font-size: 0.9rem;
+  margin: 0 0 1.1rem;
+  font-size: 1.08rem;
   font-weight: 500;
-  line-height: 1.9;
+  line-height: 1.82;
   color: rgb(255 255 255 / 0.9);
 }
 
 .lp-scene__more {
   margin: 0;
-  font-size: 0.82rem;
+  font-size: 1rem;
   font-weight: 600;
   color: rgb(255 255 255 / 0.92);
 }
@@ -454,7 +515,7 @@ strong {
   margin: 0 0 1rem;
   font-family: var(--lp-script);
   font-weight: 700;
-  font-size: clamp(2.75rem, 9vw, 4.5rem);
+  font-size: clamp(2.95rem, 11vw, 4.65rem);
   color: #fff;
   line-height: 1;
   text-shadow: 0 2px 28px rgb(0 0 0 / 0.45);
@@ -485,10 +546,10 @@ strong {
 .lp-bridge__text {
   margin: 0;
   max-width: 38rem;
-  font-size: 0.92rem;
+  font-size: 1.08rem;
   font-weight: 500;
   color: var(--lp-muted);
-  line-height: 1.75;
+  line-height: 1.72;
 }
 
 .lp-scene-dock {
@@ -511,10 +572,10 @@ strong {
 .lp-scene-dock__btn {
   display: grid;
   place-items: center;
-  width: 2.35rem;
-  height: 2.35rem;
-  border-radius: 6px;
-  font-size: 1rem;
+  width: 2.85rem;
+  height: 2.85rem;
+  border-radius: 8px;
+  font-size: 1.15rem;
   font-weight: 700;
   line-height: 1;
   text-decoration: none;
@@ -548,10 +609,11 @@ strong {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.35rem;
+  padding: 0.95rem 1.65rem;
   border-radius: 999px;
-  font-size: 0.88rem;
+  font-size: 1.05rem;
   font-weight: 700;
+  min-height: 2.85rem;
   text-decoration: none;
   border: 1px solid transparent;
   transition:
@@ -608,7 +670,7 @@ strong {
 
 /* —— Sections —— */
 .lp-section {
-  padding: clamp(2.75rem, 7vw, 4.5rem) 0;
+  padding: clamp(3rem, 9vw, 4.75rem) 0;
   background: linear-gradient(180deg, rgb(255 255 255 / 0.88) 0%, var(--lp-paper) 100%);
   border-top: 1px solid rgb(255 255 255 / 0.6);
 }
@@ -664,8 +726,8 @@ strong {
   margin: 0 0 1rem;
   font-family: var(--lp-serif);
   font-weight: 700;
-  font-size: clamp(1.45rem, 3.6vw, 2.05rem);
-  line-height: 1.35;
+  font-size: clamp(1.7rem, 5.5vw, 2.35rem);
+  line-height: 1.32;
   letter-spacing: -0.02em;
   color: var(--lp-ink);
 }
@@ -703,18 +765,18 @@ strong {
 
 .lp-h3 {
   margin: 0 0 0.65rem;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 700;
 }
 
 .lp-prose {
   margin: 0;
   color: var(--lp-muted);
-  font-size: 0.95rem;
+  font-size: 1.06rem;
 }
 
 .lp-prose--tight {
-  font-size: 0.92rem;
+  font-size: 1.02rem;
 }
 
 .lp-prose--on-dark {
@@ -724,7 +786,7 @@ strong {
 .lp-prompt {
   margin: 0 0 1.5rem;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.35rem;
   text-align: center;
   font-family: var(--lp-serif);
   background: linear-gradient(95deg, var(--lp-coral), var(--lp-violet), var(--lp-teal));
@@ -794,7 +856,7 @@ strong {
 
 .lp-photo-grid__cap {
   margin: 0.55rem 0 0;
-  font-size: 0.82rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--lp-muted);
   letter-spacing: 0.02em;
@@ -843,18 +905,19 @@ strong {
   position: relative;
 }
 
+/* モバイル優先：縦長 → 広い画面でシネマ幅 */
 .lp-roast-visual__pic {
   border-radius: var(--lp-radius);
   overflow: hidden;
   border: 1px solid var(--lp-line);
   box-shadow: var(--lp-shadow-soft);
-  aspect-ratio: 21 / 9;
+  aspect-ratio: 4 / 3;
   background: var(--lp-coffee-deep);
 }
 
-@media (max-width: 719px) {
+@media (min-width: 720px) {
   .lp-roast-visual__pic {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 21 / 9;
   }
 }
 
@@ -870,9 +933,9 @@ strong {
   position: absolute;
   right: 1rem;
   bottom: 1rem;
-  padding: 0.45rem 0.85rem;
+  padding: 0.55rem 1rem;
   border-radius: 999px;
-  font-size: 0.72rem;
+  font-size: 0.92rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   color: rgb(255 252 248);
@@ -949,7 +1012,7 @@ strong {
 
 .lp-panel__tag {
   margin: 0 0 0.35rem;
-  font-size: 0.78rem;
+  font-size: 0.95rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   color: #c2410c;
@@ -962,7 +1025,7 @@ strong {
 .lp-panel__h {
   margin: 0 0 0.35rem;
   font-family: var(--lp-serif);
-  font-size: 1.35rem;
+  font-size: 1.55rem;
   font-weight: 700;
 }
 
@@ -984,7 +1047,7 @@ strong {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  font-size: 0.88rem;
+  font-size: 1.02rem;
   font-weight: 600;
   color: #0d9488;
   border-bottom: 1px dashed rgb(13 148 136 / 0.45);
@@ -1014,15 +1077,15 @@ strong {
 
 @media (min-width: 720px) {
   .lp-expert {
-    grid-template-columns: 148px 1fr;
+    grid-template-columns: 168px 1fr;
     align-items: start;
     gap: 2rem;
   }
 }
 
 .lp-expert__photo {
-  width: 132px;
-  height: 132px;
+  width: 156px;
+  height: 156px;
   border-radius: 999px;
   margin-inline: auto;
   background: conic-gradient(
@@ -1057,13 +1120,13 @@ strong {
 .lp-expert__q {
   margin: 0 0 0.75rem;
   font-family: var(--lp-serif);
-  font-size: 1.15rem;
+  font-size: 1.35rem;
   font-weight: 700;
 }
 
 .lp-caption {
   margin: 1rem 0 0;
-  font-size: 0.78rem;
+  font-size: 1.02rem;
   color: var(--lp-muted);
 }
 
@@ -1123,13 +1186,13 @@ strong {
 .lp-campaign__title {
   margin: 0 0 0.35rem;
   font-weight: 800;
-  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  font-size: clamp(1.1rem, 3.5vw, 1.35rem);
   letter-spacing: 0.02em;
 }
 
 .lp-campaign__meta {
   margin: 0;
-  font-size: 0.82rem;
+  font-size: 1rem;
   opacity: 0.92;
 }
 
@@ -1160,7 +1223,7 @@ strong {
 .lp-callout__lead {
   margin: 0 0 0.75rem;
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 1.22rem;
   color: #fff;
 }
 
@@ -1176,7 +1239,8 @@ strong {
 .lp-details summary {
   cursor: pointer;
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: 1.06rem;
+  padding: 0.15rem 0;
   list-style: none;
 }
 
@@ -1186,7 +1250,7 @@ strong {
 
 .lp-details p {
   margin: 0.85rem 0 0;
-  font-size: 0.9rem;
+  font-size: 1.04rem;
   color: var(--lp-muted);
 }
 
@@ -1232,7 +1296,7 @@ strong {
 .lp-aside-tip__q {
   margin: 0 0 0.5rem;
   font-weight: 800;
-  font-size: 0.95rem;
+  font-size: 1.12rem;
 }
 
 .lp-fresh {
@@ -1263,7 +1327,7 @@ strong {
   margin: 0 0 0.75rem;
   font-family: var(--lp-serif);
   font-weight: 700;
-  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-size: clamp(1.55rem, 4vw, 1.95rem);
   line-height: 1.35;
 }
 
@@ -1282,13 +1346,13 @@ strong {
 .lp-footer__brand {
   margin: 0 0 0.5rem;
   font-weight: 800;
-  font-size: 0.88rem;
+  font-size: 1.02rem;
   letter-spacing: 0.06em;
 }
 
 .lp-footer__note {
   margin: 0;
-  font-size: 0.82rem;
+  font-size: 1rem;
   color: var(--lp-muted);
   line-height: 1.65;
 }
@@ -1303,5 +1367,5 @@ strong {
 }
 
 [id] {
-  scroll-margin-top: 5.5rem;
+  scroll-margin-top: clamp(5rem, 14vw, 6.25rem);
 }
