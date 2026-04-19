@@ -4,6 +4,34 @@ const IMG_HOME =
 const IMG_PARK =
   'https://images.unsplash.com/photo-1528696897294-496848998806?auto=format&fit=crop&w=1920&q=80';
 
+/** セクション用ストック写真（layout='lazy' で読み込み） */
+const IMG_PHOTO_GRID = [
+  {
+    src: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=960&q=82',
+    alt: '湯気の立つエスプレッソカップ',
+    caption: '一杯の温度',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=960&q=82',
+    alt: '焙煎豆のクローズアップ',
+    caption: '焙煎後の香ばしさ',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=960&q=82',
+    alt: 'ポットからカップへ注がれるコーヒー',
+    caption: '抽出のリズム',
+  },
+] as const;
+
+const IMG_EXPERT =
+  'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=480&h=480&q=82';
+
+const IMG_ORIGIN_BAND =
+  'https://images.unsplash.com/photo-1447933601403-0c6688ce94d7?auto=format&fit=crop&w=1800&q=82';
+
+const IMG_ROAST_WIDE =
+  'https://images.unsplash.com/photo-1514432327600-9014cba3b693?auto=format&fit=crop&w=1400&q=82';
+
 export default function App() {
   return (
     <div className="lp">
@@ -129,6 +157,17 @@ export default function App() {
 
             <p className="lp-prompt">個性派？　ベーシック派？</p>
 
+            <div className="lp-photo-grid" aria-label="コーヒーの写真ギャラリー">
+              {IMG_PHOTO_GRID.map(({ src, alt, caption }) => (
+                <figure key={src} className="lp-photo-grid__card">
+                  <div className="lp-photo-grid__frame">
+                    <img src={src} alt={alt} loading="lazy" decoding="async" sizes="(max-width: 820px) 100vw, 33vw" />
+                  </div>
+                  <figcaption className="lp-photo-grid__cap">{caption}</figcaption>
+                </figure>
+              ))}
+            </div>
+
             <div className="lp-twocol">
               <article className="lp-panel lp-panel--accent">
                 <p className="lp-panel__tag">個性派</p>
@@ -166,8 +205,15 @@ export default function App() {
             </div>
 
             <div className="lp-expert">
-              <div className="lp-expert__photo" aria-hidden="true">
-                <span>焙煎士</span>
+              <div className="lp-expert__photo">
+                <img
+                  src={IMG_EXPERT}
+                  alt="カウンターでセラミックドリッパーを扱う様子（ストック写真）"
+                  loading="lazy"
+                  decoding="async"
+                  width={132}
+                  height={132}
+                />
               </div>
               <div className="lp-expert__body">
                 <h3 className="lp-expert__q">シングルとブレンド、どっちがオススメ？</h3>
@@ -199,6 +245,13 @@ export default function App() {
                 一般的には商社などを経由して届く生豆。ここではデモとして、産地との距離を短くする前提のストーリーを置いています（実在の取引・店舗ではありません）。
               </p>
             </header>
+
+            <div
+              className="lp-photo-band"
+              role="img"
+              aria-label="コーヒーチェリーが枝に実る様子のストック写真"
+              style={{ backgroundImage: `url(${IMG_ORIGIN_BAND})` }}
+            />
 
             <article className="lp-article-block">
               <h3 className="lp-h3">商社を通さず、直接取引を想定した設計</h3>
@@ -247,6 +300,19 @@ export default function App() {
                 仕入れた生豆はまだ「生豆」。熱を通して初めて、カップに乗る味が立ち上がります。デモでは「自社工場へ入り、ローストを設計する」という縦長のレイアウトで、工程の温度感を出します。
               </p>
             </header>
+
+            <div className="lp-roast-visual">
+              <div className="lp-roast-visual__pic">
+                <img
+                  src={IMG_ROAST_WIDE}
+                  alt="ロースターと豆のクローズアップ（ストック写真）"
+                  loading="lazy"
+                  decoding="async"
+                  sizes="(max-width: 820px) 100vw, 46vw"
+                />
+              </div>
+              <p className="lp-roast-visual__tag">自社焙煎 · デモ構成</p>
+            </div>
 
             <div className="lp-split-note">
               <div>
