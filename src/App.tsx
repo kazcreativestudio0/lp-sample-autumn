@@ -8,18 +8,18 @@ const IMG_PARK =
 const IMG_PHOTO_GRID = [
   {
     src: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=960&q=82',
-    alt: '湯気の立つエスプレッソカップ',
-    caption: '一杯の温度',
+    alt: 'エスプレッソカップ',
+    caption: '一杯',
   },
   {
     src: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=960&q=82',
-    alt: '焙煎豆のクローズアップ',
-    caption: '焙煎後の香ばしさ',
+    alt: '焙煎豆',
+    caption: '焙煎',
   },
   {
     src: 'https://images.unsplash.com/photo-1498804103079-a6351b050096?auto=format&fit=crop&w=960&q=82',
-    alt: 'ポットからカップへ注がれるコーヒー',
-    caption: '抽出のリズム',
+    alt: 'ドリップ',
+    caption: '抽出',
   },
 ] as const;
 
@@ -46,20 +46,20 @@ export default function App() {
             <span className="lp-mark__line2">coffee</span>
           </a>
           <nav className="lp-topnav" aria-label="ページ内">
-            <a href="#top">秋の2シーン</a>
-            <a href="#types">2種の一杯</a>
-            <a href="#sourcing">豆のルーツ</a>
+            <a href="#top">シーン</a>
+            <a href="#types">2種</a>
+            <a href="#sourcing">ルーツ</a>
             <a href="#roast">焙煎</a>
-            <a href="#tips">用語</a>
+            <a href="#tips">FAQ</a>
           </nav>
         </div>
       </header>
 
       <nav className="lp-scene-dock" aria-label="シーンへジャンプ">
-        <a className="lp-scene-dock__btn" href="#top" aria-label="家でのアップルパイのシーンへ">
+        <a className="lp-scene-dock__btn" href="#top" aria-label="上のシーンへ">
           ↑
         </a>
-        <a className="lp-scene-dock__btn" href="#scene-park" aria-label="公園シーンへ">
+        <a className="lp-scene-dock__btn" href="#scene-park" aria-label="下のシーンへ">
           ↓
         </a>
       </nav>
@@ -74,7 +74,7 @@ export default function App() {
           <div className="lp-scene__overlay" aria-hidden="true" />
           <div className="lp-scene__wash lp-scene__wash--home" aria-hidden="true" />
           <div className="lp-scene__leaves" aria-hidden="true" />
-          <div className="lp-scene__social" aria-label="シェア（デモ・リンクなし）">
+          <div className="lp-scene__social" aria-label="シェア（デモ）">
             <a href="#top" className="lp-scene__icon" aria-label="X（デモ）">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -97,12 +97,12 @@ export default function App() {
               <p className="lp-scene__script lp-scene__script--aside">at Home</p>
             </div>
             <div className="lp-scene__column">
-              <p className="lp-scene__tag">秋のスイーツをもっとおいしくするコーヒー</p>
+              <p className="lp-scene__tag">秋のスイーツ × コーヒー</p>
               <p className="lp-scene__text">
-                夕方の光が短くなる頃、キッチンからはバターとシナモンの香り。炭酸のきいたコーヒーが、さくっと焼けたアップルパイの甘みをすっと拾います。平日の自分へのごほうびに、カップひとつで秋をすくいあげる時間。
+                アップルパイと、きいたコーヒー。晩ごはん前の一杯に。
               </p>
               <p className="lp-scene__more">
-                <span className="lp-scene__chev">&gt;</span> 焼きたてアップルパイ
+                <span className="lp-scene__chev">&gt;</span> アップルパイ
               </p>
             </div>
           </div>
@@ -124,22 +124,20 @@ export default function App() {
                 to the Park
               </p>
               <p className="lp-scene__text">
-                澄んだ空気の休日、ブランケットを広げてパークへ。テイクアウトのコーヒーと、かぼちゃとエスプレッソをきかせたケーキを並べれば、ピクニックがひとあし早く秋の味に片寄ります。
+                ピクニックにコーヒーとパンプキンケーキ。
               </p>
               <p className="lp-scene__more">
-                <span className="lp-scene__chev">&gt;</span> エスプレッショパンプキンケーキ
+                <span className="lp-scene__chev">&gt;</span> パンプキンケーキ
               </p>
             </div>
           </div>
         </section>
 
-        <section className="lp-bridge" aria-label="ストーリーへの導線">
+        <section className="lp-bridge" aria-label="導線">
           <div className="lp-inner lp-bridge__inner">
-            <p className="lp-bridge__text">
-              シーズンのあとには、定番の一杯へ。スペシャルティの2ラインと、豆が辿ってきた道をご紹介します。
-            </p>
+            <p className="lp-bridge__text">定番の2ラインと、豆の話。</p>
             <a className="lp-btn lp-btn--solid" href="#types">
-              2種の一杯を見る
+              見る
             </a>
           </div>
         </section>
@@ -148,18 +146,16 @@ export default function App() {
           <div className="lp-inner">
             <header className="lp-sechead">
               <h2 className="lp-h2" id="lp-h2-types">
-                選べる2種類の
+                スペシャルティ
                 <wbr />
-                スペシャルティコーヒー
+                2種
               </h2>
-              <p className="lp-prose">
-                大きく分けて2系統。どちらも、自社基準の生豆を、自社のローストで。同じ席で、違う顔の「いい一杯」に出会えるようにしました。
-              </p>
+              <p className="lp-prose">シングルとブレンド。同じ席で、違う一杯。</p>
             </header>
 
-            <p className="lp-prompt">個性派？　ベーシック派？</p>
+            <p className="lp-prompt">どっち派？</p>
 
-            <div className="lp-photo-grid" aria-label="コーヒーの写真ギャラリー">
+            <div className="lp-photo-grid" aria-label="写真">
               {IMG_PHOTO_GRID.map(({ src, alt, caption }) => (
                 <figure key={src} className="lp-photo-grid__card">
                   <div className="lp-photo-grid__frame">
@@ -173,34 +169,30 @@ export default function App() {
             <div className="lp-twocol">
               <article className="lp-panel lp-panel--accent">
                 <p className="lp-panel__tag">個性派</p>
-                <h3 className="lp-panel__h">シングルオリジン</h3>
-                <p className="lp-panel__lead">季節で変わる、産地の表情。</p>
-                <p className="lp-prose lp-prose--tight">
-                  ひとつの産地だけを使った一杯。時期ごとに銘柄が入れ替わる「旬」のコーヒーとして楽しめます。生豆の個性が立つよう、焙煎は浅め〜中浅めで香りを逃さない設計が多いです。
-                </p>
-                <ul className="lp-mini-list" aria-label="ラインナップ例">
+                <h3 className="lp-panel__h">シングル</h3>
+                <p className="lp-panel__lead">産地はそのとき々。</p>
+                <p className="lp-prose lp-prose--tight">ひと産地だけ。旬が変われば銘柄も変わる。</p>
+                <ul className="lp-mini-list" aria-label="例">
                   <li>
-                    <span className="lp-faux-link">ホット（シングル）</span>
+                    <span className="lp-faux-link">ホット</span>
                   </li>
                   <li>
-                    <span className="lp-faux-link">アイス（シングル）</span>
+                    <span className="lp-faux-link">アイス</span>
                   </li>
                 </ul>
               </article>
 
               <article className="lp-panel">
-                <p className="lp-panel__tag lp-panel__tag--muted">ベーシック派</p>
+                <p className="lp-panel__tag lp-panel__tag--muted">ベーシック</p>
                 <h3 className="lp-panel__h">ブレンド</h3>
-                <p className="lp-panel__lead">いつでも同じ安心のバランス。</p>
-                <p className="lp-prose lp-prose--tight">
-                  年やロットでブレンド比率を微調整し、味の芯はブレない一杯に。香ばしさと甘みのバランスを得意とし、食事のシメにも相性がいい焙煎設計です。
-                </p>
-                <ul className="lp-mini-list" aria-label="ラインナップ例">
+                <p className="lp-panel__lead">いつもの味。</p>
+                <p className="lp-prose lp-prose--tight">比率は微調整、軸はブレない。</p>
+                <ul className="lp-mini-list" aria-label="例">
                   <li>
-                    <span className="lp-faux-link">ホット（ブレンド）</span>
+                    <span className="lp-faux-link">ホット</span>
                   </li>
                   <li>
-                    <span className="lp-faux-link">アイス（ブレンド）</span>
+                    <span className="lp-faux-link">アイス</span>
                   </li>
                 </ul>
               </article>
@@ -210,7 +202,7 @@ export default function App() {
               <div className="lp-expert__photo">
                 <img
                   src={IMG_EXPERT}
-                  alt="カウンターでセラミックドリッパーを扱う様子（ストック写真）"
+                  alt="ドリップ（ストック）"
                   loading="lazy"
                   decoding="async"
                   width={132}
@@ -218,77 +210,60 @@ export default function App() {
                 />
               </div>
               <div className="lp-expert__body">
-                <h3 className="lp-expert__q">シングルとブレンド、どっちがオススメ？</h3>
+                <h3 className="lp-expert__q">どっち？</h3>
                 <p className="lp-prose">
-                  そこはお好みで、が前提です。サンプル焙煎の個人的には、
-                  <strong>「食前はシングル」「食後はブレンド」</strong>
-                  を試してみてください。澄んだ酸味は最初のひと口を軽やかに、焙煎がしっかりめのブレンドは口の中をさっぱり仕上げやすいです。
+                  好み次第。<strong>食前はシングル、食後はブレンド</strong>が試しやすい。
                 </p>
-                <p className="lp-caption">架空の焙煎担当コメント · LPデモ</p>
+                <p className="lp-caption">デモ</p>
               </div>
             </div>
           </div>
         </section>
 
-        <aside className="lp-campaign" aria-label="キャンペーン告知（デモ）">
+        <aside className="lp-campaign" aria-label="キャンペーン（架空）">
           <div className="lp-inner lp-campaign__inner">
-            <p className="lp-campaign__title">ほっと一息　珈琲キャンペーン（架空）</p>
-            <p className="lp-campaign__meta">
-              期間イメージ：6月1日（月）〜6月30日（火）／応募はサンプルのため無効です
-            </p>
+            <p className="lp-campaign__title">珈琲キャンペーン（架空）</p>
+            <p className="lp-campaign__meta">応募なし · デモ</p>
           </div>
         </aside>
 
         <section className="lp-section lp-section--dark" id="sourcing">
           <div className="lp-inner">
             <header className="lp-sechead lp-sechead--on-dark">
-              <h2 className="lp-h2 lp-h2--light">コーヒー豆は、まずルーツから。</h2>
-              <p className="lp-prose lp-prose--on-dark">
-                一般的には商社などを経由して届く生豆。ここではデモとして、産地との距離を短くする前提のストーリーを置いています（実在の取引・店舗ではありません）。
-              </p>
+              <h2 className="lp-h2 lp-h2--light">豆のルーツ</h2>
+              <p className="lp-prose lp-prose--on-dark">産地と近い前提のストーリー（架空）。</p>
             </header>
 
             <div
               className="lp-photo-band"
               role="img"
-              aria-label="コーヒーチェリーが枝に実る様子のストック写真"
+              aria-label="チェリー（ストック）"
               style={{ backgroundImage: `url(${IMG_ORIGIN_BAND})` }}
             />
 
             <article className="lp-article-block">
-              <h3 className="lp-h3">商社を通さず、直接取引を想定した設計</h3>
+              <h3 className="lp-h3">直接取引のイメージ</h3>
               <p className="lp-prose lp-prose--on-dark">
-                温暖な高地で育つコーヒーチェリー。赤道付近に産地が集中するなか、品質はロットごとに揺れます。デモの「サンプル珈琲堂」では、選定〜焙煎までの前提をひとつの線で語れるようにするため、産地との対話とサンプルの評価を繰り返す──という見せ方を採用しました。
-              </p>
-              <p className="lp-prose lp-prose--on-dark">
-                取引が育ってきた産地もあれば、新しい畑との出会いもある、という語り口は、長く読ませるLPに向きます。
+                ロットごとに味は違う。産地とサンプルで選ぶ。
               </p>
             </article>
 
             <article className="lp-article-block">
-              <h3 className="lp-h3">地球の裏側へも、自分たちの足で（ストーリー例）</h3>
-              <p className="lp-prose lp-prose--on-dark">
-                サンプルをカッピングし、焙煎の方向性を決める。開拓では現地を訪ね、栽培の様子や処理を確認する──といった長文ブロックは、スクロールに沿って「読み物」として成立させられます。
-              </p>
+              <h3 className="lp-h3">現地・カッピング</h3>
+              <p className="lp-prose lp-prose--on-dark">焙煎の方向を決めてから煎る。</p>
 
               <details className="lp-details lp-details--dark">
-                <summary>カッピングって何をするの？</summary>
-                <p>
-                  液体をすすって香り・酸味・ボディなどを評価する工程です。デモでは月次のレビューや、出荷前ロットの確認など、現場の安心材料として説明することが多いです。
-                </p>
+                <summary>カッピング？</summary>
+                <p>すすって香りと味を見る工程。</p>
               </details>
             </article>
 
             <article className="lp-callout lp-callout--glass">
-              <p className="lp-callout__lead">提供するのはスペシャルティだけ、という一文の置き方</p>
-              <p className="lp-prose lp-prose--on-dark lp-prose--tight">
-                From seed to cup の思想を短くまとめるブロックです。栽培から抽出までの品質管理が前提で、世界中でも割合は限られる──という説明は、ブランドの芯を伝えやすいです。
-              </p>
+              <p className="lp-callout__lead">スペシャルティ</p>
+              <p className="lp-prose lp-prose--on-dark lp-prose--tight">選豆・ルーツ・焙煎をセットで。</p>
               <details className="lp-details lp-details--dark lp-details--inline">
-                <summary>スペシャルティコーヒーって？</summary>
-                <p>
-                  定義や格付けは団体や基準によります。LPでは「選び抜いた豆」「透明なルーツ」「焙煎と抽出の設計」の3点セットで読者に伝えるのが無難です。
-                </p>
+                <summary>とは</summary>
+                <p>団体により定義は異なる。LPでは「選び抜き」の一言で十分なことが多い。</p>
               </details>
             </article>
           </div>
@@ -297,56 +272,46 @@ export default function App() {
         <section className="lp-section" id="roast">
           <div className="lp-inner">
             <header className="lp-sechead">
-              <h2 className="lp-h2">焙煎は、自分たちで。</h2>
-              <p className="lp-prose">
-                仕入れた生豆はまだ「生豆」。熱を通して初めて、カップに乗る味が立ち上がります。デモでは「自社工場へ入り、ローストを設計する」という縦長のレイアウトで、工程の温度感を出します。
-              </p>
+              <h2 className="lp-h2">自社焙煎</h2>
+              <p className="lp-prose">熱で味を立ち上げる。工場でロースト設計（デモ）。</p>
             </header>
 
             <div className="lp-roast-visual">
               <div className="lp-roast-visual__pic">
                 <img
                   src={IMG_ROAST_WIDE}
-                  alt="ロースターと豆のクローズアップ（ストック写真）"
+                  alt="焙煎（ストック）"
                   loading="lazy"
                   decoding="async"
                   sizes="(max-width: 820px) 100vw, 46vw"
                 />
               </div>
-              <p className="lp-roast-visual__tag">自社焙煎 · デモ構成</p>
+              <p className="lp-roast-visual__tag">自社焙煎 · デモ</p>
             </div>
 
             <div className="lp-split-note">
               <div>
-                <h3 className="lp-h3">だって、自分たちで選んだ豆だから。</h3>
-                <p className="lp-prose">
-                  個性が強い豆は浅煎りで香りを、食事と並べるなら焙煎を深めてボディを。メニューが肉料理中心でも、コクで押し切らずにキレを残す──など、店の文脈に合わせた一文が刺さります。
-                </p>
+                <h3 className="lp-h3">自分たちで選んだ豆</h3>
+                <p className="lp-prose">浅めは香り、深めはボディ。メニューに合わせて。</p>
               </div>
               <aside className="lp-aside-tip">
-                <p className="lp-aside-tip__q">肉料理にはコーヒーが合う？</p>
-                <p className="lp-prose lp-prose--tight">
-                  濃い味の皿のあとに、焙煎の香ばしさで締める。スイーツ前提のコーヒー像とは違う「食事のコーヒー」を提案する段落に使えます。
-                </p>
+                <p className="lp-aside-tip__q">食事と？</p>
+                <p className="lp-prose lp-prose--tight">濃い皿のあとに香ばしさで締める、もアリ。</p>
               </aside>
             </div>
 
             <div className="lp-fresh">
               <div className="lp-fresh__col">
-                <h3 className="lp-h3">焙煎後の鮮度も、工程のひとつ</h3>
-                <p className="lp-prose">
-                  注文に合わせて焙煎し、店舗へ。作り置きではなく、注文から抽出へ、というストーリーはフレッシュ感の訴求に効きます（デモのため実装はありません）。
-                </p>
+                <h3 className="lp-h3">鮮度</h3>
+                <p className="lp-prose">焙煎してから店へ。作り置き前提の文案用（実装なし）。</p>
               </div>
               <div className="lp-fresh__col lp-fresh__col--emph">
                 <p className="lp-fresh__big">
-                  焙煎から
+                  煎れてから
                   <br />
-                  店舗まで短く。
+                  早く。
                 </p>
-                <p className="lp-prose lp-prose--tight">
-                  ロットと配送の設計は実案件で詰めますが、LPでは「香りのピークが続く理由」を短く宣言するのがポイントです。
-                </p>
+                <p className="lp-prose lp-prose--tight">香りのピークを短く届ける、と一言で。</p>
               </div>
             </div>
           </div>
@@ -355,15 +320,15 @@ export default function App() {
         <section className="lp-section lp-section--muted" id="tips">
           <div className="lp-inner lp-narrow">
             <header className="lp-sechead">
-              <h2 className="lp-h2">よくある質問（サンプル）</h2>
+              <h2 className="lp-h2">FAQ</h2>
             </header>
             <details className="lp-details">
-              <summary>デカフェはありますか？</summary>
-              <p>実案件ではメニューとリンク。ここではプレースホルダーです。</p>
+              <summary>デカフェは？</summary>
+              <p>本番はメニューへ。ここはデモ。</p>
             </details>
             <details className="lp-details">
               <summary>豆の販売は？</summary>
-              <p>テイクアウトやECの導線は、コンバージョン設計と合わせて別LPに逃がすと管理しやすいです。</p>
+              <p>別ページにまとめると運用が楽。</p>
             </details>
           </div>
         </section>
@@ -371,13 +336,13 @@ export default function App() {
 
       <footer className="lp-footer">
         <div className="lp-inner">
-          <p className="lp-footer__brand">SAMPLE coffee · LP構成デモ</p>
+          <p className="lp-footer__brand">SAMPLE coffee · デモ</p>
           <p className="lp-footer__note">
-            冒頭は「秋のコーヒー×スイーツ」のフルブリード2シーン構成のデモです。写真は{' '}
+            写真は{' '}
             <a href="https://unsplash.com" rel="noopener noreferrer">
               Unsplash
             </a>
-            のストック、ロゴ・実在キャンペーンとの関係はありません。下層はスペシャルティ紹介の長文LPサンプルです。
+            。架空のキャンペーンです。
           </p>
         </div>
       </footer>
