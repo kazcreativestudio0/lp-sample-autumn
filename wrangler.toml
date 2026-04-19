@@ -1,5 +1,10 @@
 # Cloudflare Pages（静的サイト）
 #
+# [!] wrangler.toml にはビルドコマンドを書けません（pages_build_output_dir のみ）。
+#     Pages の「設定 → ビルド」で Build command に必ず次を入れてください:
+#       npm run build
+#     空のままだとログに「No build command specified」「dist not found」と出ます。
+#
 # ▼ GitHub 連携だけでデプロイする場合（ダッシュボード）
 #   Workers & Pages → Create → Pages → Connect to Git
 #   Repository: kazcreativestudio0/lp-sample-autumn
