@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "node ./node_modules/vite/bin/vite.js",
+    "dev:clean": "rm -rf node_modules/.vite .vite && node ./node_modules/vite/bin/vite.js",
     "build": "node ./node_modules/vite/bin/vite.js build",
     "preview": "node ./node_modules/vite/bin/vite.js preview",
     "deploy:pages": "npm run build && wrangler pages deploy dist --project-name=lp-sample-autumn"
